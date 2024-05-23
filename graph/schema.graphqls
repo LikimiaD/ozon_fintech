@@ -1,0 +1,40 @@
+type Post {
+    id: ID!
+    title: String!
+    content: String!
+    author: String!
+    commentsEnabled: Boolean!
+    comments: [Comment!]!
+    createdAt: String!
+    updatedAt: String!
+}
+
+type Comment {
+    id: ID!
+    postId: ID!
+    commentId: ID
+    author: String!
+    content: String!
+    createdAt: String!
+    updatedAt: String!
+    replies: [Comment]
+}
+
+type Query {
+    posts: [Post!]!
+    post(id: ID!): Post
+}
+
+type Mutation {
+    createPost(title: String!, content: String!, author: String!, commentsEnabled: Boolean!): Post
+    updatePost(id: ID!, title: String, content: String, commentsEnabled: Boolean): Post
+    deletePost(id: ID!): Boolean
+
+    createComment(postId: ID!, commentId: ID, author: String!, content: String!): Comment
+    updateComment(id: ID!, content: String!): Comment
+    deleteComment(id: ID!): Boolean
+}
+
+type Subscription {
+    commentAdded(postId: ID!): Comment!
+}

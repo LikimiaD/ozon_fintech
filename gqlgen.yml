@@ -1,0 +1,31 @@
+schema:
+  - graph/schema.graphqls
+
+exec:
+  filename: graph/generated/generated.go
+  package: generated
+
+model:
+  filename: graph/model/models_gen.go
+  package: model
+
+resolver:
+  layout: follow-schema
+  dir: graph
+  package: graph
+
+models:
+  Post:
+    model:
+      - github.com/likimiad/ozon_fintech/internal/database/models.Post
+  Comment:
+    model:
+      - github.com/likimiad/ozon_fintech/internal/database/models.Comment
+
+autobind:
+  - github.com/likimiad/ozon_fintech/internal/database/models
+  - github.com/likimiad/ozon_fintech/internal/database
+  - github.com/likimiad/ozon_fintech/graph
+  - github.com/likimiad/ozon_fintech/internal/config
+
+struct_tag: json
